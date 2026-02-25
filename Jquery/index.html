@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" target="_blank" method="post">
+        <h1>Create Account</h1>
+        <div class="label">
+            <label for="name">full Name</label>
+            <input type="text" name="name" id="name" placeholder="John Doe" required pattern="[A-Za-z\s]+">
+        </div>
+           <div class="label">
+            <label for="email">Email</label>
+ <input type="email" name="email" id="email" placeholder="youremail@mail.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            required>
+        </div>
+
+         <div class="label">
+            <label for="choose password">choose password</label>
+            <input type="password" name="password" id="password" placeholder="********" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+            <input type="checkbox" onclick="password.type = this.checked ? 'text' : 'password'">
+        </div>
+        <div class="label">
+            <label for="confirm password">confirm password</label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="********" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+            <input type="checkbox" onclick="confirm_password.type = this.checked ? 'text' : 'password'">
+        </div>
+
+        <div class="terms">
+            <input type="checkbox" name="terms" id="terms" required>
+            <label for="terms">I agree to the terms and conditions</label>
+        </div>
+    
+        <div class="signbutton">
+            <button type="submit">sign up</button>
+        </div>
+        <div class="signbutton">
+             <button>Signup with Google</button>    
+        </div>
+
+        <div class="account">
+            <p>Already have an account? <a href="#">Login</a></p>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Get form values
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var confirmPassword = $('#confirm_password').val();
+                var termsChecked = $('#terms').is(':checked');
+
+
+                // Validate form fields
+                if (name === '' || email === '' || password === '' || confirmPassword === '') {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+
+                if (!termsChecked) {
+                    alert('You must agree to the terms and conditions.');
+                    return;
+                }
+
+
+                // If validation passes, you can submit the form or perform further actions
+                alert('Form submitted successfully!');
+            });
+        });
+    </script>
+</body>
+</html>
